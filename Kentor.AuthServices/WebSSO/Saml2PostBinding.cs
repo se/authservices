@@ -65,7 +65,15 @@ namespace Kentor.AuthServices.WebSso
 
                 xmlDoc.LoadXml(xml);
 
-                xmlDoc.Sign(message.SigningCertificate, true, message.SigningAlgorithm);
+                if (xmlDoc.FirstChild.LastChild.Name.Equals("saml2:Assertion"))
+                {
+                    ((XmlElement) xmlDoc.FirstChild.LastChild).Sign(message.SigningCertificate, false, message.SigningAlgorithm);
+                }
+                else
+                {
+                    xmlDoc.Sign(message.SigningCertificate, true, message.SigningAlgorithm);
+                }
+
                 xml = xmlDoc.OuterXml;
             }
 

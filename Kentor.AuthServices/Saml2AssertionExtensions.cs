@@ -49,7 +49,7 @@ namespace Kentor.AuthServices
                     xml.Add(statement.ToXElement());
                 };
             }
-
+            
             return xml;
         }
     }

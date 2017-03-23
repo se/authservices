@@ -573,11 +573,22 @@ namespace Kentor.AuthServices
 
         internal static string GetCorrespondingDigestAlgorithm(string signingAlgorithm)
         {
-            var matchPattern = signingAlgorithm.Substring(signingAlgorithm.LastIndexOf('-') + 1);
+            if (string.IsNullOrEmpty(signingAlgorithm))
+            {
+                const string matchPattern = "sha256";
 
-            return digestAlgorithms.Single(a => a.EndsWith(
-                matchPattern,
-                StringComparison.Ordinal));
+                return digestAlgorithms.Single(a => a.EndsWith(
+                    matchPattern,
+                    StringComparison.Ordinal));
+            }
+            else
+            {
+                var matchPattern = signingAlgorithm.Substring(signingAlgorithm.LastIndexOf('-') + 1);
+
+                return digestAlgorithms.Single(a => a.EndsWith(
+                    matchPattern,
+                    StringComparison.Ordinal));
+            }
         }
     }
 }

@@ -125,6 +125,7 @@
     <Content Include="robots.txt" />
     <Content Include="Scripts\ICanHaz.js" />
     <Content Include="Scripts\ICanHaz.min.js" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
