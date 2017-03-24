@@ -59,11 +59,11 @@ namespace SampleOwinApplication
                 SPOptions = spOptions
             };
 
-            var idp = new IdentityProvider(new EntityId("http://stubidp.kentor.se/Metadata"), spOptions)
+            var idp = new IdentityProvider(new EntityId("https://sso.local.com/saml/80e7278f-b61c-4e21-8f43-155cabb8846a/Metadata"), spOptions)
                 {
                     AllowUnsolicitedAuthnResponse = true,
                     Binding = Saml2BindingType.HttpRedirect,
-                    SingleSignOnServiceUrl = new Uri("http://stubidp.kentor.se")
+                    SingleSignOnServiceUrl = new Uri("https://sso.local.com/saml/80e7278f-b61c-4e21-8f43-155cabb8846a")
                 };
 
             idp.SigningKeys.AddConfiguredKey(
@@ -76,7 +76,7 @@ namespace SampleOwinApplication
             // It's enough to just create the federation and associate it
             // with the options. The federation will load the metadata and
             // update the options with any identity providers found.
-            new Federation("http://localhost:52071/Federation", true, authServicesOptions);
+            new Federation("https://sso.local.com/saml/80e7278f-b61c-4e21-8f43-155cabb8846a/Federation", true, authServicesOptions);
 
             return authServicesOptions;
         }
@@ -94,7 +94,7 @@ namespace SampleOwinApplication
             {
                 EntityId = new EntityId("http://localhost:57294/AuthServices"),
                 ReturnUrl = new Uri("http://localhost:57294/Account/ExternalLoginCallback"),
-                DiscoveryServiceUrl = new Uri("http://localhost:52071/DiscoveryService"),
+                DiscoveryServiceUrl = new Uri("https://sso.local.com/saml/80e7278f-b61c-4e21-8f43-155cabb8846a/DiscoveryService"),
                 Organization = organization
             };
 
